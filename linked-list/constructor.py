@@ -10,6 +10,16 @@ class LinkedList:
         self.length = 1
         self.next = None
 
+    def append(self, value):
+        new_node = Node(value)
+        # Set next value of the previous tail
+        self.tail = new_node
+        self.length += 1
+
+    def pop(self):
+        # Remove Item
+        self.length -= 1
+
 my_linked_list = LinkedList(4)
 
 # print(my_linked_list.node)
