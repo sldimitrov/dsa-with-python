@@ -43,7 +43,6 @@ class LinkedList:
         self.length += 1
         return True
 
-
     def pop(self):
         if self.length is None:
             return None
@@ -61,6 +60,22 @@ class LinkedList:
             self.head = None
             self.tail = None
         return temp
+
+    def pop_first(self):
+        if self.length == 0:
+            return None
+
+        temp = self.head
+        self.head = self.head.next
+        next_node = self.tail
+        temp.next = None
+        self.length -= 1
+
+        if self.length == 0:
+            self.tail = None
+
+        return temp.value
+
 
 # Initialise Linked List
 my_linked_list = LinkedList(4)
@@ -80,5 +95,9 @@ print('Length:', my_linked_list.length)
 
 # Print Items
 print("Print items after pop")
+
+my_linked_list.preprend(3)
+print(my_linked_list.pop_first())
+
 my_linked_list.print_items()
 
