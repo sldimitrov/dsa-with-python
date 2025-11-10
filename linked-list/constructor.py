@@ -31,7 +31,7 @@ class LinkedList:
         self.length += 1
         return True
 
-    def preprend(self, value):
+    def prepend(self, value):
         new_node = Node(value)
 
         if self.length == 0:
@@ -95,6 +95,21 @@ class LinkedList:
 
         temp.value = value
 
+    def insert(self, index, value):
+        if index < 0 or index > self.length:
+            return False
+        if index == 0:
+            return self.prepend(value)
+        if index == self.length:
+            return self.append(value)
+
+        new_node = Node(value)
+        temp = self.get(index - 1)
+
+        new_node.next = temp.next
+        temp.next = new_node
+        self.length += 1
+        return True
 
 # Initialise Linked List
 my_linked_list = LinkedList(4)
