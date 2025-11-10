@@ -77,7 +77,7 @@ class LinkedList:
         return temp.value
 
     def get(self, index):
-        if index < 0 or index >= self.length:
+        if index < 0 or index > self.length:
             return None
 
         temp = self.head
@@ -86,7 +86,7 @@ class LinkedList:
         return temp
 
     def set_value(self, index, value):
-        if index < 0 or index >= self.length:
+        if index < 0 or index > self.length:
             return None
 
         temp = self.head
@@ -111,6 +111,24 @@ class LinkedList:
         self.length += 1
         return True
 
+    def remove(self, index):
+        if index < 0 or index >= self.length:
+            return False
+
+        if index == 0:
+            self.pop_first()
+        if index == self.length - 1:
+            self.pop()
+
+        prev = self.get(index - 1)
+        temp = prev.next
+
+        prev.next = temp.next
+        temp.next = None
+        self.length -= 1
+        return temp
+
+
 # Initialise Linked List
 my_linked_list = LinkedList(4)
 
@@ -120,7 +138,6 @@ my_linked_list.append(6)
 
 print("Print items before pop")
 my_linked_list.print_items()
-
 
 #
 # my_linked_list.pop()
